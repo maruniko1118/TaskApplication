@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.activity.RegisterActivity">
+
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/llcTaskSet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <Button
+      android:id="@+id/btnSave"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:layout_marginTop="24dp"
+      android:layout_marginEnd="24dp"
+      android:background="@drawable/rounded_corner_button_shape"
+      android:gravity="center"
+      android:text="@string/save" />
+
+    <EditText
+      android:id="@+id/edtTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="24sp"
+      android:hint="@string/set_title"
+      android:textSize="32sp"
+      tools:ignore="TextFields,TextContrastCheck"
+      android:importantForAutofill="no" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      android:layout_marginBottom="12sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:layout_gravity="center"
+        android:text="@string/set_date"
+        android:textSize="24sp"/>
+
+      <ImageButton
+        android:id="@+id/btnDate"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_corner_button_shape"
+        android:contentDescription="@string/set_date"
+        android:gravity="center"
+        android:src="@drawable/ic_calender"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+      <ImageButton
+        android:id="@+id/btnDateDelete"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/rounded_corner_button_shape"
+        android:gravity="center"
+        android:contentDescription="@string/del_date"
+        android:src="@drawable/ic_delete" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:layout_gravity="center"
+        android:text="@string/set_time"
+        android:textSize="24sp"/>
+
+      <ImageButton
+        android:id="@+id/btnTime"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_weight="1"
+        android:background="@drawable/rounded_corner_button_shape"
+        android:contentDescription="@string/set_time"
+        android:gravity="center"
+        android:src="@drawable/ic_clock"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+      <ImageButton
+        android:id="@+id/btnTimeDelete"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/rounded_corner_button_shape"
+        android:gravity="center"
+        android:contentDescription="@string/del_time"
+        android:src="@drawable/ic_delete"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+  </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

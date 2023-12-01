@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/mobile_navigation"
+  app:startDestination="@+id/navigation_task">
+
+  <fragment
+    android:id="@+id/navigation_task"
+    android:name="com.maru2525.taskapplication.ui.fragment.ViewTaskFragment"
+    android:label="@string/header_task"
+    tools:layout="@layout/fragment_view_task" />
+
+  <fragment
+    android:id="@+id/navigation_archive"
+    android:name="com.maru2525.taskapplication.ui.fragment.ViewArchiveFragment"
+    android:label="@string/header_archive"
+    tools:layout="@layout/fragment_view_archive" />
+
+  <fragment
+    android:id="@+id/navigation_config"
+    android:name="com.maru2525.taskapplication.ui.fragment.ConfigFragment"
+    android:label="@string/header_config"
+    tools:layout="@layout/fragment_config" />
+</navigation>

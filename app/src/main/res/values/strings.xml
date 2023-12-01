@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">タスク管理</string>
+
+    <string name="no_title">タイトルなし</string>
+
+    <!--Header-->
+    <string name="header_task">タスク</string>
+    <string name="header_archive">アーカイブ済</string>
+    <string name="header_config">設定</string>
+    <string name="header_sub">タスク登録</string>
+
+    <!--fragment_home-->
+
+    <!--fragment_task-->
+    <!--SnackBar-->
+    <string name="task_delete">タスクを削除しました</string>
+    <string name="task_archive">タスクをアーカイブしました</string>
+
+    <!--fragment_archive-->
+    <!--SnackBar-->
+    <string name="archive_delete">アーカイブされたタスクを削除しました</string>
+    <string name="archive_task">アーカイブされたタスクを元に戻しました</string>
+
+    <!--fragment_set-->
+    <string name="save">保存</string>
+    <string name="set_title">タイトルを設定</string>
+    <string name="set_date">日付を設定</string>
+    <string name="del_date">日付を削除</string>
+    <string name="set_time">時間を設定</string>
+    <string name="del_time">時間を削除</string>
+
+    <!--item_task-->
+    <string name="tv_title">タイトル</string>
+    <string name="tv_date">yyyy/mm/dd</string>
+    <string name="tv_time">hh:mm</string>
+</resources>
