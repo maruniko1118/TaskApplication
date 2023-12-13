@@ -18,7 +18,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="bottom|end"
     android:layout_margin="16sp"
-    android:contentDescription="@string/header_sub"
+    android:contentDescription="@string/header_register"
     android:src="@drawable/ic_add"
     tools:ignore="ImageContrastCheck" />
 

@@ -16,10 +16,4 @@
     android:name="com.maru2525.taskapplication.ui.fragment.ViewArchiveFragment"
     android:label="@string/header_archive"
     tools:layout="@layout/fragment_view_archive" />
-
-  <fragment
-    android:id="@+id/navigation_config"
-    android:name="com.maru2525.taskapplication.ui.fragment.ConfigFragment"
-    android:label="@string/header_config"
-    tools:layout="@layout/fragment_config" />
 </navigation>

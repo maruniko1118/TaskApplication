@@ -13,9 +13,13 @@
     android:theme="@style/Theme.TaskApplication"
     tools:targetApi="31">
     <activity
+      android:name=".ui.activity.ConfigActivity"
+      android:exported="false"
+      android:label="@string/header_config" />
+    <activity
       android:name=".ui.activity.RegisterActivity"
       android:exported="false"
-      android:label="@string/header_task"/>
+      android:label="@string/header_register" />
     <activity
       android:name=".ui.activity.MainActivity"
       android:exported="true">
