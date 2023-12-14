@@ -22,7 +22,6 @@ class RecyclerViewTaskAdapter (private val list: ArrayList<Task>) : RecyclerView
     val item = list[position]
     holder.binding.tvDate.text = item.date
     holder.binding.tvTitle.text = item.title
-    holder.binding.tvTime.text = item.time
   }
 
 }
