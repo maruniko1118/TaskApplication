@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".dialog.DetailDialogFragment">
+
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:id="@+id/llcTaskSet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="UselessParent">
+
+    <Button
+      android:id="@+id/btnEdit"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="end"
+      android:layout_marginTop="24dp"
+      android:layout_marginEnd="24dp"
+      android:background="@drawable/rounded_corner_button_shape"
+      android:gravity="center"
+      android:text="@string/edit" />
+
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="24sp"
+      android:hint="@string/set_title"
+      android:textSize="32sp"
+      tools:ignore="TextFields,TextContrastCheck"
+      android:importantForAutofill="no" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      android:layout_marginBottom="12sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:text="@string/date"
+        android:textSize="24sp"/>
+
+      <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_weight="5"
+        android:hint="@string/date"
+        android:textSize="24sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      tools:ignore="UselessParent">
+
+
+      <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:text="@string/time"
+        android:textSize="24sp"/>
+
+      <TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_weight="5"
+        android:hint="@string/time"
+        android:textSize="24sp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+  </androidx.appcompat.widget.LinearLayoutCompat>
+
+</FrameLayout>
+

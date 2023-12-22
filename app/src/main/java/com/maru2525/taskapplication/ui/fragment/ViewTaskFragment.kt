@@ -21,11 +21,13 @@ import com.maru2525.taskapplication.R
 import com.maru2525.taskapplication.database.DatabaseArchiveManager
 import com.maru2525.taskapplication.database.DatabaseTaskManager
 import com.maru2525.taskapplication.databinding.FragmentViewTaskBinding
+import com.maru2525.taskapplication.dialog.DetailDialogFragment
+import com.maru2525.taskapplication.ui.PracticeRecyclerItemClickListener
 import com.maru2525.taskapplication.ui.RecyclerViewTaskAdapter
 import com.maru2525.taskapplication.ui.Task
 import com.maru2525.taskapplication.ui.activity.RegisterActivity
 
-class ViewTaskFragment : Fragment() {
+class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecyclerClickListener {
 
   private lateinit var binding: FragmentViewTaskBinding
 
@@ -68,6 +70,8 @@ class ViewTaskFragment : Fragment() {
     taskData = dbTaskManager.getAllData()
 
     recyclerView.adapter = RecyclerViewTaskAdapter(taskData)
+
+    recyclerView.addOnItemTouchListener(PracticeRecyclerItemClickListener(requireActivity(), recyclerView, this))
 
     val itemDecoration: RecyclerView.ItemDecoration =
       DividerItemDecoration(requireActivity(), DividerItemDecoration.VERTICAL)
@@ -163,8 +167,6 @@ class ViewTaskFragment : Fragment() {
             itemView.top + (itemView.height - archiveIcon.intrinsicHeight) / 2
           val archiveIconBottom = deleteIconTop + archiveIcon.intrinsicHeight
 
-
-
           when {
             dX < 0 -> { // 左方向へのスワイプ
               val iconLeft =
@@ -221,6 +223,11 @@ class ViewTaskFragment : Fragment() {
     itemTouchHelper.attachToRecyclerView(recyclerView)
 
     Log.d("TaskFragment", "onViewCreated")
+  }
+
+  override fun onItemClick(view: View, position: Int) {
+    DetailDialogFragment(taskData[taskData[position].id - 1]).show(parentFragmentManager, null)
+    Log.d("ViewTaskFragment", "普通のタップ")
   }
 
   override fun onResume() {

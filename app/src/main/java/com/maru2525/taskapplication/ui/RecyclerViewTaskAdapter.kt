@@ -20,7 +20,6 @@ class RecyclerViewTaskAdapter (private val list: ArrayList<Task>) : RecyclerView
 
   override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
     val item = list[position]
-    holder.binding.tvDate.text = item.date
     holder.binding.tvTitle.text = item.title
   }
 

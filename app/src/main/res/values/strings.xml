@@ -33,4 +33,10 @@
   <string name="tv_title">タイトル</string>
   <string name="tv_date">yyyy/mm/dd</string>
   <string name="tv_time">hh:mm</string>
+
+  <!--detail_dialog-->
+  <string name="edit">編集</string>
+  <string name="date">日付</string>
+  <string name="time">時間</string>
+  <string name="detail">詳細</string>
 </resources>
