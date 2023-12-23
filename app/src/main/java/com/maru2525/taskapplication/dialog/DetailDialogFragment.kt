@@ -10,9 +10,7 @@ import androidx.fragment.app.DialogFragment
 import com.maru2525.taskapplication.databinding.FragmentDetailDialogBinding
 import com.maru2525.taskapplication.ui.Task
 
-class DetailDialogFragment(task: Task) : DialogFragment(){
-
-  private val task = task
+class DetailDialogFragment(private val task: Task) : DialogFragment(){
 
   private lateinit var binding : FragmentDetailDialogBinding
 
