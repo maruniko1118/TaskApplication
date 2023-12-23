@@ -55,9 +55,9 @@
         android:id="@+id/date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
         android:layout_weight="5"
-        android:hint="@string/date"
+        android:hint="@string/not_register"
+        android:textAlignment="viewEnd"
         android:textSize="24sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -84,9 +84,9 @@
         android:id="@+id/time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:textAlignment="viewEnd"
         android:layout_weight="5"
-        android:hint="@string/time"
+        android:hint="@string/not_register"
         android:textSize="24sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
