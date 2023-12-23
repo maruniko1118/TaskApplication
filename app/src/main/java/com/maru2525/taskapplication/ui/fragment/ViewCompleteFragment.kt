@@ -9,10 +9,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,13 +19,13 @@ import com.google.android.material.snackbar.Snackbar
 import com.maru2525.taskapplication.R
 import com.maru2525.taskapplication.database.DatabaseArchiveManager
 import com.maru2525.taskapplication.database.DatabaseTaskManager
-import com.maru2525.taskapplication.databinding.FragmentViewArchiveBinding
+import com.maru2525.taskapplication.databinding.FragmentViewCompleteBinding
 import com.maru2525.taskapplication.ui.RecyclerViewTaskAdapter
 import com.maru2525.taskapplication.ui.Task
 
-class ViewArchiveFragment : Fragment() {
+class ViewCompleteFragment : Fragment() {
 
-  private lateinit var binding: FragmentViewArchiveBinding
+  private lateinit var binding: FragmentViewCompleteBinding
 
   private lateinit var recyclerView: RecyclerView
 
@@ -42,7 +40,7 @@ class ViewArchiveFragment : Fragment() {
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    binding = FragmentViewArchiveBinding.inflate(inflater, container, false)
+    binding = FragmentViewCompleteBinding.inflate(inflater, container, false)
     recyclerView = binding.rvTask
 
     Log.d("ArchiveFragment","onCreateView")
@@ -95,7 +93,7 @@ class ViewArchiveFragment : Fragment() {
           // adapterに削除されたことを通知する
           adapter.notifyItemRemoved(viewHolder.adapterPosition)
           // 削除を通知
-          Snackbar.make(binding.cdlTask, resources.getText(R.string.archive_delete), Snackbar.LENGTH_SHORT).show()
+          Snackbar.make(binding.cdlTask, resources.getText(R.string.comp_delete), Snackbar.LENGTH_SHORT).show()
         } else if (direction == ItemTouchHelper.RIGHT) {
           // 右スワイプ時アーカイブ
           val data = dbArchiveManager.getData(taskData[viewHolder.adapterPosition].id)
@@ -107,7 +105,7 @@ class ViewArchiveFragment : Fragment() {
           // adapterに削除されたことを通知する
           adapter.notifyItemRemoved(viewHolder.adapterPosition)
           // タスクに戻したことを通知
-          Snackbar.make(binding.cdlTask, resources.getText(R.string.archive_task), Snackbar.LENGTH_SHORT).show()
+          Snackbar.make(binding.cdlTask, resources.getText(R.string.comp_task), Snackbar.LENGTH_SHORT).show()
         }
       }
 

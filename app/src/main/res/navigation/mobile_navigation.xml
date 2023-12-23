@@ -13,7 +13,7 @@
 
   <fragment
     android:id="@+id/navigation_archive"
-    android:name="com.maru2525.taskapplication.ui.fragment.ViewArchiveFragment"
-    android:label="@string/header_archive"
-    tools:layout="@layout/fragment_view_archive" />
+    android:name="com.maru2525.taskapplication.ui.fragment.ViewCompleteFragment"
+    android:label="@string/header_comp"
+    tools:layout="@layout/fragment_view_complete" />
 </navigation>
