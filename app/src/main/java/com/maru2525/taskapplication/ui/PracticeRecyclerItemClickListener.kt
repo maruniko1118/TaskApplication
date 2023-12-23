@@ -6,8 +6,9 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.view.GestureDetectorCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.maru2525.taskapplication.ui.fragment.ViewTaskFragment
 
-class PracticeRecyclerItemClickListener(context: Context, recyclerView: RecyclerView, private val listener: OnRecyclerClickListener)
+class PracticeRecyclerItemClickListener(context: Context, recyclerView: RecyclerView, private val listener: ViewTaskFragment)
   : RecyclerView.SimpleOnItemTouchListener() {
 
   interface OnRecyclerClickListener{

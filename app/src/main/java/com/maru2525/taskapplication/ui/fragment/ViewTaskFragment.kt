@@ -150,7 +150,7 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
         val deleteIcon: Drawable? =
           AppCompatResources.getDrawable(recyclerView.context, R.drawable.ic_delete)
         val archiveIcon: Drawable? =
-          AppCompatResources.getDrawable(recyclerView.context, R.drawable.ic_archive)
+          AppCompatResources.getDrawable(recyclerView.context, R.drawable.ic_complete)
 
         if (deleteIcon != null && archiveIcon != null) {
 
