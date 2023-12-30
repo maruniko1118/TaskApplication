@@ -23,7 +23,7 @@ class TimePickerDialogFragment(private val time: TextView): DialogFragment(), Ti
 
     return TimePickerDialog(
       requireContext(),
-      this,//返したいアクティビティをセット
+      this,       //返したいアクティビティをセット
       hour,
       minute,
       true)
@@ -35,7 +35,7 @@ class TimePickerDialogFragment(private val time: TextView): DialogFragment(), Ti
     //TimePickerにて選択された時間(ジフン)をもとにLocalDateのインスタンスを取得
     val setLocalTime = LocalTime.of(hourOfDay, minute)
     //表示する際のフォーマットを決める
-    val format = DateTimeFormatter.ofPattern("hh:mm")
+    val format = DateTimeFormatter.ofPattern("HH:mm")
     //選択された日付をフォーマットに合わせる
     val time = setLocalTime.format(format)
     //editTextに表示させる
