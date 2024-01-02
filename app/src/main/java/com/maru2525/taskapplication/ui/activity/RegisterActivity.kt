@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.maru2525.taskapplication.R
-import com.maru2525.taskapplication.database.DatabaseTaskManager
+import com.maru2525.taskapplication.database.DatabaseManager
 import com.maru2525.taskapplication.databinding.ActivityRegisterBinding
 import com.maru2525.taskapplication.dialog.DatePickerDialogFragment
 import com.maru2525.taskapplication.dialog.TimePickerDialogFragment
@@ -13,7 +13,7 @@ class RegisterActivity : AppCompatActivity() {
 
   private lateinit var binding: ActivityRegisterBinding
 
-  private val dbManager by lazy { DatabaseTaskManager(this) }
+  private val dbManager by lazy { DatabaseManager(this, "Task") }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -51,7 +51,10 @@ class RegisterActivity : AppCompatActivity() {
       var time = binding.tvTime.text.toString()
       if (time == resources.getString(R.string.set_time))
         time = ""
-      dbManager.addData(title, date, time)
+      var details = binding.edtDetail.text.toString()
+      if (details == "")
+        details = ""
+      dbManager.addData(title, date, time, details)
       finish()
     }
 
