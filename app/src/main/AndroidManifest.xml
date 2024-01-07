@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools">
 
+  <!--通知に必要-->
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+  <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+
   <application
     android:allowBackup="true"
     android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,14 +18,17 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.TaskApplication"
     tools:targetApi="31">
+
     <activity
       android:name=".ui.activity.ConfigActivity"
       android:exported="false"
       android:label="@string/header_config" />
+
     <activity
       android:name=".ui.activity.RegisterActivity"
       android:exported="false"
       android:label="@string/header_register" />
+
     <activity
       android:name=".ui.activity.MainActivity"
       android:exported="true">
@@ -29,6 +38,11 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <!--追加分(通知関係)-->
+    <receiver android:name=".remind.ReceivedActivity"
+      android:process=":remote" />
+
   </application>
 
 </manifest>

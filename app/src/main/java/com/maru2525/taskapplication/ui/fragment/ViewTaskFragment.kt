@@ -1,16 +1,22 @@
 package com.maru2525.taskapplication.ui.fragment
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.icu.util.Calendar
+import android.icu.util.TimeZone
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -21,6 +27,7 @@ import com.maru2525.taskapplication.R
 import com.maru2525.taskapplication.database.DatabaseManager
 import com.maru2525.taskapplication.databinding.FragmentViewTaskBinding
 import com.maru2525.taskapplication.dialog.DetailDialogFragment
+import com.maru2525.taskapplication.remind.ReceivedActivity
 import com.maru2525.taskapplication.ui.PracticeRecyclerItemClickListener
 import com.maru2525.taskapplication.ui.RecyclerViewTaskAdapter
 import com.maru2525.taskapplication.ui.Task
@@ -102,7 +109,7 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
           // 左スワイプ時に実行したい処理
           val data = dbTaskManager.getData(taskData[viewHolder.adapterPosition].id)
           if (data != null) {
-            dbArchiveManager.addData(data.title, data.date, data.time, data.details)
+            dbArchiveManager.addData(data.title, data.date, data.time, data.details, data.remind)
           }
           dbTaskManager.deleteData(taskData[viewHolder.adapterPosition].id)
           taskData.removeAt(viewHolder.adapterPosition)
@@ -236,6 +243,43 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
     if (taskData.size < tempData.size) {
       dbTaskManager.getData(tempData.size)?.let { taskData.add(it) }
       adapter.notifyItemInserted(tempData.size)
+
+      if (taskData[taskData.size-1].remind == "yes"){
+
+        val year = taskData[taskData.size-1].date.substring(0, 4).toInt()
+        val month = taskData[taskData.size-1].date.substring(5, 7).toInt()
+        val day = taskData[taskData.size-1].date.substring(8, 10).toInt()
+        val hour = taskData[taskData.size-1].time.substring(0, 2).toInt()
+        val min = taskData[taskData.size-1].time.substring(3, 5).toInt()
+
+        Log.d("time", "$year/$month/$day $hour:$min")
+
+        // AlarmManagerインスタンスを取得
+        val alarmManager = requireActivity().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        // インテントを生成
+        val notificationIntent = Intent(requireActivity(), ReceivedActivity::class.java)
+
+        // Activityから値を渡したい場合は格納しておく
+        notificationIntent.putExtra("message", taskData[taskData.size-1].title)
+        // ブロードキャストを行うためのPendingIntentを取得
+        // 第二引数requestCodeは登録するブロードキャストが1つなら0で良いが複数あるなら変更する必要有→例えばデータのIDなど
+        val pendingIntent = PendingIntent.getBroadcast(requireActivity(), taskData[taskData.size-1].id, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
+
+        val timeZone = TimeZone.getTimeZone("Asia/Tokyo")
+        val calendar = Calendar.getInstance(timeZone)   // タイムゾーンを指定
+        calendar.timeInMillis = 0                       // リセット
+        calendar.set(Calendar.YEAR, year)               // 任意の年を設定
+        calendar.set(Calendar.MONTH, month)             // 任意の月を設定
+        calendar.set(Calendar.DAY_OF_MONTH, day)        // 任意の日を設定
+        calendar.set(Calendar.HOUR_OF_DAY, hour)        // 任意の時を設定
+        calendar.set(Calendar.MINUTE, min)              // 任意の分を設定
+        calendar.set(Calendar.SECOND, 0)                // 任意の秒を設定
+        val triggerTime = calendar.timeInMillis  // 指定した日時のミリ秒表現を取得
+
+        Log.d("time", "$triggerTime")
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
+      }
     }
 
     Log.d("TaskFragment", "onResume")

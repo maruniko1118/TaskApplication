@@ -4,11 +4,11 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DatabaseHelper(context: Context, dbName: String, dbVersion: Int) : SQLiteOpenHelper(
+class DatabaseHelper(context: Context, dbName: String) : SQLiteOpenHelper(
   context,
   dbName,
   null,
-  dbVersion
+  2
 ) {
   private val table1 = "Task"
   private val table2 = "Archive"
@@ -19,12 +19,13 @@ class DatabaseHelper(context: Context, dbName: String, dbVersion: Int) : SQLiteO
     const val Date = "date"
     const val Time = "time"
     const val Details = "details"
+    const val Remind = "remind"
   }
 
   // DB作成処理
   override fun onCreate(db: SQLiteDatabase) {
-    db.execSQL("CREATE TABLE $table1 ( $Id INTEGER PRIMARY KEY,$Title TEXT,$Date TEXT,$Time TEXT, $Details TEXT );")
-    db.execSQL("CREATE TABLE $table2 ( $Id INTEGER PRIMARY KEY,$Title TEXT,$Date TEXT,$Time TEXT, $Details TEXT );")
+    db.execSQL("CREATE TABLE $table1 ( $Id INTEGER PRIMARY KEY,$Title TEXT,$Date TEXT,$Time TEXT, $Details TEXT, $Remind TEXT );")
+    db.execSQL("CREATE TABLE $table2 ( $Id INTEGER PRIMARY KEY,$Title TEXT,$Date TEXT,$Time TEXT, $Details TEXT, $Remind TEXT );")
   }
 
   // DBアップデート処理

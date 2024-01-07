@@ -9,10 +9,7 @@ import com.maru2525.taskapplication.ui.Task
 class DatabaseManager(context: Context, private val dtName: String) {
   private val dbName = "Task.db"
 
-  // 生成時のDBバージョン番号
-  private val dbVersion = 1
-
-  private val _helper = DatabaseHelper(context, dbName, dbVersion)
+  private val _helper = DatabaseHelper(context, dbName)
 
   /**
    * クローズ処理
@@ -24,11 +21,11 @@ class DatabaseManager(context: Context, private val dtName: String) {
   /**
    * データ追加処理
    */
-  fun addData(title: String, date: String, time: String, details: String): Int{
+  fun addData(title: String, date: String, time: String, details: String, remind: String): Int{
     val id: Int
     val db = _helper.writableDatabase
 
-    val sqlInsert = "INSERT INTO $dtName (title, date, time, details) VALUES (?, ?, ?, ?);"
+    val sqlInsert = "INSERT INTO $dtName (title, date, time, details, remind) VALUES (?, ?, ?, ?, ?);"
 
     val stmt = db.compileStatement(sqlInsert)
 
@@ -36,6 +33,7 @@ class DatabaseManager(context: Context, private val dtName: String) {
     stmt.bindString(2, date)
     stmt.bindString(3, time)
     stmt.bindString(4, details)
+    stmt.bindString(5, remind)
     id = stmt.executeInsert().toInt()
 
     Log.d("DatabaseManager","addData")
@@ -84,7 +82,8 @@ class DatabaseManager(context: Context, private val dtName: String) {
         cursor.getString(1),
         cursor.getString(2),
         cursor.getString(3),
-        cursor.getString(4)
+        cursor.getString(4),
+        cursor.getString(5)
       )
     }
     cursor.close()
@@ -109,7 +108,8 @@ class DatabaseManager(context: Context, private val dtName: String) {
           cursor.getString(1),
           cursor.getString(2),
           cursor.getString(3),
-          cursor.getString(4)
+          cursor.getString(4),
+          cursor.getString(5)
         )
         allData.add(task)
         cursor.moveToNext()

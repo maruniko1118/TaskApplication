@@ -33,6 +33,18 @@
       tools:ignore="TextFields,TextContrastCheck"
       android:importantForAutofill="no" />
 
+    <Switch
+      android:id="@+id/swUseRemind"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      android:layout_marginBottom="12sp"
+      android:minHeight="48dp"
+      android:text="通知を利用する"
+      android:textSize="18sp"
+      tools:ignore="UseSwitchCompatOrMaterialXml" />
+
     <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

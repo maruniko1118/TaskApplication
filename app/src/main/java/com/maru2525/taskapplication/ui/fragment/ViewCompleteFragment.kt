@@ -89,7 +89,7 @@ class ViewCompleteFragment : Fragment() {
           // 左スワイプ時アーカイブ
           val data = dbArchiveManager.getData(taskData[viewHolder.adapterPosition].id)
           if (data != null) {
-            dbTaskManager.addData(data.title, data.date, data.time, data.details)
+            dbTaskManager.addData(data.title, data.date, data.time, data.details, data.remind)
           }
           dbArchiveManager.deleteData(taskData[viewHolder.adapterPosition].id)
           taskData.removeAt(viewHolder.adapterPosition)
