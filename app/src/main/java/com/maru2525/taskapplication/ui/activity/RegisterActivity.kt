@@ -82,51 +82,18 @@ class RegisterActivity : AppCompatActivity() {
         var title = binding.edtTitle.text.toString()
         if (title == "")
           title = resources.getString(R.string.no_title)
+
         var date = binding.tvDate.text.toString()
         if (date == resources.getString(R.string.set_date))
           date = ""
+
         var time = binding.tvTime.text.toString()
         if (time == resources.getString(R.string.set_time))
           time = ""
+
         var details = binding.edtDetail.text.toString()
         if (details == "")
           details = ""
-
-        if (remind == "yes") {
-          year = date.substring(0, 4).toInt()
-          month = date.substring(5, 7).toInt()
-          day = date.substring(8, 10).toInt()
-          hour = time.substring(0, 2).toInt()
-          min = time.substring(3, 5).toInt()
-
-          Log.d("time", "$year/$month/$day $hour:$min")
-
-          // AlarmManagerインスタンスを取得
-          val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-          // インテントを生成
-          val notificationIntent = Intent(this, ReceivedActivity::class.java)
-
-          // Activityから値を渡したい場合は格納しておく
-          notificationIntent.putExtra("message", title)
-          // ブロードキャストを行うためのPendingIntentを取得
-          // 第二引数requestCodeは登録するブロードキャストが1つなら0で良いが複数あるなら変更する必要有→例えばデータのIDなど
-          val pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE)
-
-          val timeZone = TimeZone.getTimeZone("Asia/Tokyo")
-          val calendar = Calendar.getInstance(timeZone)   // タイムゾーンを指定
-          calendar.timeInMillis = 0                       // リセット
-          calendar.set(Calendar.YEAR, year)               // 任意の年を設定
-          calendar.set(Calendar.MONTH, month)             // 任意の月を設定
-          calendar.set(Calendar.DAY_OF_MONTH, day)        // 任意の日を設定
-          calendar.set(Calendar.HOUR_OF_DAY, hour)        // 任意の時を設定
-          calendar.set(Calendar.MINUTE, min)              // 任意の分を設定
-          calendar.set(Calendar.SECOND, 0)                // 任意の秒を設定
-          val triggerTime = calendar.timeInMillis.toString().substring(0, calendar.timeInMillis.toString().length - 4).toLong()    // 指定した日時のミリ秒表現を取得
-
-          Log.d("time", "$triggerTime")
-
-          alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
-        }
 
         dbManager.addData(title, date, time, details, remind)
         finish()
