@@ -18,8 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.maru2525.taskapplication.R
-import com.maru2525.taskapplication.database.DatabaseArchiveManager
-import com.maru2525.taskapplication.database.DatabaseTaskManager
+import com.maru2525.taskapplication.database.DatabaseManager
 import com.maru2525.taskapplication.databinding.FragmentViewTaskBinding
 import com.maru2525.taskapplication.dialog.DetailDialogFragment
 import com.maru2525.taskapplication.ui.PracticeRecyclerItemClickListener
@@ -36,9 +35,9 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
   private lateinit var adapter: RecyclerViewTaskAdapter
 
   // タスクテーブルのマネージャ
-  private val dbTaskManager by lazy { DatabaseTaskManager(requireActivity()) }
+  private val dbTaskManager by lazy { DatabaseManager(requireActivity(), "Task") }
   // アーカイブテーブルのマネージャ
-  private val dbArchiveManager by lazy { DatabaseArchiveManager(requireActivity()) }
+  private val dbArchiveManager by lazy { DatabaseManager(requireActivity(), "Archive") }
 
   private var taskData: ArrayList<Task> = arrayListOf()
 
@@ -101,17 +100,9 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
       override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         if (direction == ItemTouchHelper.LEFT) {
           // 左スワイプ時に実行したい処理
-          dbTaskManager.deleteData(taskData[viewHolder.adapterPosition].id)
-          taskData.removeAt(viewHolder.adapterPosition)
-          // adapterに削除されたことを通知する
-          adapter.notifyItemRemoved(viewHolder.adapterPosition)
-          // 画面下部に削除通知
-          Snackbar.make(binding.cdlTask, resources.getText(R.string.task_delete), Snackbar.LENGTH_SHORT).show()
-        } else if (direction == ItemTouchHelper.RIGHT) {
-          // 右スワイプ時に実行したい処理
           val data = dbTaskManager.getData(taskData[viewHolder.adapterPosition].id)
           if (data != null) {
-            dbArchiveManager.addData(data.title, data.date, data.time)
+            dbArchiveManager.addData(data.title, data.date, data.time, data.details)
           }
           dbTaskManager.deleteData(taskData[viewHolder.adapterPosition].id)
           taskData.removeAt(viewHolder.adapterPosition)
@@ -119,6 +110,14 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
           adapter.notifyItemRemoved(viewHolder.adapterPosition)
           // 画面下部にアーカイブ化通知
           Snackbar.make(binding.cdlTask, resources.getText(R.string.task_archive), Snackbar.LENGTH_SHORT).show()
+        } else if (direction == ItemTouchHelper.RIGHT) {
+          // 右スワイプ時に実行したい処理
+          dbTaskManager.deleteData(taskData[viewHolder.adapterPosition].id)
+          taskData.removeAt(viewHolder.adapterPosition)
+          // adapterに削除されたことを通知する
+          adapter.notifyItemRemoved(viewHolder.adapterPosition)
+          // 画面下部に削除通知
+          Snackbar.make(binding.cdlTask, resources.getText(R.string.task_delete), Snackbar.LENGTH_SHORT).show()
         }
       }
 
@@ -168,32 +167,11 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
           val archiveIconBottom = deleteIconTop + archiveIcon.intrinsicHeight
 
           when {
-            dX < 0 -> { // 左方向へのスワイプ
+            // 左方向へのスワイプ
+            dX < 0 -> {
               val iconLeft =
-                itemView.right - deleteIconMargin - deleteIcon.intrinsicWidth
-              val iconRight = itemView.right - deleteIconMargin
-              deleteIcon.setBounds(
-                iconLeft,
-                deleteIconTop,
-                iconRight,
-                deleteIconBottom
-              )
-              deleteBackground.setBounds(
-                itemView.right + dX.toInt(),
-                itemView.top,
-                itemView.right,
-                itemView.bottom
-              )
-              // 背景の描画
-              deleteBackground.draw(canvas)
-              // アイコンの描画
-              deleteIcon.draw(canvas)
-            }
-
-            dX > 0 -> { // 右方向へのスワイプ
-              val iconLeft = itemView.left + archiveIconMargin
-              val iconRight =
-                itemView.left + archiveIconMargin + archiveIcon.intrinsicWidth
+                itemView.right - archiveIconMargin - archiveIcon.intrinsicWidth
+              val iconRight = itemView.right - archiveIconMargin
               archiveIcon.setBounds(
                 iconLeft,
                 archiveIconTop,
@@ -201,15 +179,38 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
                 archiveIconBottom
               )
               archiveBackground.setBounds(
-                itemView.left,
+                itemView.right + dX.toInt(),
                 itemView.top,
-                itemView.left + dX.toInt(),
+                itemView.right,
                 itemView.bottom
               )
               // 背景の描画
               archiveBackground.draw(canvas)
               // アイコンの描画
               archiveIcon.draw(canvas)
+            }
+
+            // 右方向へのスワイプ
+            dX > 0 -> {
+              val iconLeft = itemView.left + deleteIconMargin
+              val iconRight =
+                itemView.left + deleteIconMargin + deleteIcon.intrinsicWidth
+              deleteIcon.setBounds(
+                iconLeft,
+                deleteIconTop,
+                iconRight,
+                deleteIconBottom
+              )
+              deleteBackground.setBounds(
+                itemView.left,
+                itemView.top,
+                itemView.left + dX.toInt(),
+                itemView.bottom
+              )
+              // 背景の描画
+              deleteBackground.draw(canvas)
+              // アイコンの描画
+              deleteIcon.draw(canvas)
             }
 
             else -> {

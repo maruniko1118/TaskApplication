@@ -29,6 +29,8 @@ class DetailDialogFragment(private val task: Task) : DialogFragment(){
 
     binding.date.text = task.date
     binding.time.text = task.time
+
+    binding.detail.text = task.details
   }
 
   override fun onStart() {

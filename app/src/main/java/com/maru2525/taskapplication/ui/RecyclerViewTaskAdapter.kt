@@ -25,4 +25,4 @@ class RecyclerViewTaskAdapter (private val list: ArrayList<Task>) : RecyclerView
 
 }
 
-class Task(var id: Int, val title: String, val date: String, val time: String)
+class Task(val id: Int, val title: String, val date: String, val time: String, val details: String)

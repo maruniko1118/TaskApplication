@@ -23,11 +23,12 @@
 
   <!--fragment_set-->
   <string name="save">保存</string>
-  <string name="set_title">タイトルを設定</string>
+  <string name="set_title">タイトルを入力</string>
   <string name="set_date">日付を設定</string>
   <string name="del_date">日付を削除</string>
   <string name="set_time">時間を設定</string>
   <string name="del_time">時間を削除</string>
+  <string name="set_detail">詳細を入力</string>
 
   <!--item_task-->
   <string name="tv_title">タイトル</string>

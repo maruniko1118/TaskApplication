@@ -28,7 +28,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_margin="24sp"
-      android:hint="@string/set_title"
+      android:hint="@string/no_title"
       android:textSize="32sp"
       tools:ignore="TextFields,TextContrastCheck"
       android:importantForAutofill="no" />
@@ -90,6 +90,25 @@
         android:textSize="24sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+      android:id="@+id/tvDetail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24sp"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      android:text="@string/detail"
+      android:textSize="24sp" />
+
+    <TextView
+      android:id="@+id/detail"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="26sp"
+      android:layout_marginEnd="26sp"
+      android:hint="@string/not_register"
+      android:textSize="24sp" />
 
   </androidx.appcompat.widget.LinearLayoutCompat>
 
