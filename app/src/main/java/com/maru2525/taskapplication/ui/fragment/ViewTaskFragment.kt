@@ -274,7 +274,7 @@ class ViewTaskFragment : Fragment(), PracticeRecyclerItemClickListener.OnRecycle
         calendar.set(Calendar.HOUR_OF_DAY, hour)        // 任意の時を設定
         calendar.set(Calendar.MINUTE, min)              // 任意の分を設定
         calendar.set(Calendar.SECOND, 0)                // 任意の秒を設定
-        val triggerTime = calendar.timeInMillis  // 指定した日時のミリ秒表現を取得
+        val triggerTime = calendar.timeInMillis         // 指定した日時のミリ秒表現を取得
 
         Log.d("time", "$triggerTime")
 
