@@ -1,6 +1,7 @@
 <resources>
   <!-- Base application theme. -->
-  <style name="Theme.TaskApplication" parent="Theme.Material3.DynamicColors.Light">
+  <style name="Theme.TaskApplication" parent="Theme.Material3.Light">
     <!-- Customize your theme here. -->
+
   </style>
 </resources>

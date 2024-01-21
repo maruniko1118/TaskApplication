@@ -5,10 +5,15 @@
   android:layout_height="match_parent"
   tools:context=".ui.activity.RegisterActivity">
 
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="false">
+
   <androidx.appcompat.widget.LinearLayoutCompat
     android:id="@+id/llcTaskSet"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:ignore="UselessParent">
 
@@ -31,19 +36,40 @@
       android:hint="@string/set_title"
       android:textSize="32sp"
       tools:ignore="TextFields,TextContrastCheck"
-      android:importantForAutofill="no" />
+      android:autofillHints="no" />
 
-    <Switch
-      android:id="@+id/swUseRemind"
+    <RadioGroup
+      android:id="@+id/remindGroup"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginStart="26sp"
       android:layout_marginEnd="26sp"
-      android:layout_marginBottom="12sp"
-      android:minHeight="48dp"
-      android:text="通知を利用する"
-      android:textSize="18sp"
-      tools:ignore="UseSwitchCompatOrMaterialXml" />
+      android:layout_marginBottom="26sp"
+      android:orientation="horizontal">
+
+      <RadioButton
+        android:id="@+id/noRemind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/no_remind"
+        android:checked="true" />
+
+      <RadioButton
+        android:id="@+id/remind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/remind" />
+
+      <RadioButton
+        android:id="@+id/alarm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/alarm" />
+
+    </RadioGroup>
 
     <androidx.appcompat.widget.LinearLayoutCompat
       android:layout_width="match_parent"
@@ -138,8 +164,10 @@
       android:hint="@string/set_detail"
       android:textSize="24sp"
       tools:ignore="TextFields,TextContrastCheck"
-      android:importantForAutofill="no"/>
+      android:autofillHints="no"/>
 
   </androidx.appcompat.widget.LinearLayoutCompat>
+
+  </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

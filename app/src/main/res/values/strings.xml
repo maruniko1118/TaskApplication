@@ -20,10 +20,14 @@
   <!--SnackBar-->
   <string name="comp_delete">完了したタスクを削除しました</string>
   <string name="comp_task">タスクを元に戻しました</string>
+  <string name="task_making">タスクを元に戻しました</string>
 
   <!--fragment_set-->
   <string name="save">保存</string>
   <string name="set_title">タイトルを入力</string>
+  <string name="no_remind">通知しない</string>
+  <string name="remind">通知する</string>
+  <string name="alarm">アラーム</string>
   <string name="set_date">日付を設定</string>
   <string name="del_date">日付を削除</string>
   <string name="set_time">時間を設定</string>
@@ -41,4 +45,17 @@
   <string name="time">時間</string>
   <string name="detail">詳細</string>
   <string name="not_register">未登録</string>
+
+  <!--activity_config-->
+  <string name="test_remind">通知をテスト</string>
+  <string name="test_carryout">実行</string>
+  <string name="swipe_direction">タスクをスワイプ時の動作</string>
+  <string name="swipe_left">左</string>
+  <string name="swipe_right">右</string>
+  <string name="swipe_delete">削除</string>
+  <string name="swipe_complete">完了</string>
+  <string name="swipe_disable">未使用</string>
+  <string name="snooze">スヌーズ</string>
+  <string name="test_alarm">アラームをテスト</string>
+  <string name="stop">停止</string>
 </resources>

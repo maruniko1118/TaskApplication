@@ -1,15 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".ui.activity.ConfigActivity">
 
-  <Button
-    android:id="@+id/btnRemindTest"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_margin="16sp"
-    android:text="通知をテストする" />
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-</FrameLayout>
+  <androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12sp"
+    android:layout_marginEnd="12sp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="12sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvRemindTest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:text="@string/test_remind"
+        android:textSize="24sp"/>
+
+      <Button
+        android:id="@+id/btnRemindTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/test_carryout" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginTop="12sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvAlarmTest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:text="@string/test_alarm"
+        android:textSize="24sp"/>
+
+      <Button
+        android:id="@+id/btnAlarmTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/test_carryout" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:layout_marginTop="12sp"
+      tools:ignore="UselessParent">
+
+      <TextView
+        android:id="@+id/tvSwipeDirection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/swipe_direction"
+        android:textSize="24sp"/>
+
+      <TextView
+        android:id="@+id/tvSwipeRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8sp"
+        android:text="@string/swipe_right"
+        android:textSize="24sp"/>
+
+        <RadioGroup
+          android:id="@+id/swipeGroupR"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:layout_marginStart="16sp"
+          android:orientation="horizontal">
+
+          <RadioButton
+            android:id="@+id/swipeDeleteR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_delete"
+            android:checked="true"
+            android:textSize="24sp"/>
+
+          <RadioButton
+            android:id="@+id/swipeCompleteR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_complete"
+            android:textSize="24sp"/>
+
+          <RadioButton
+            android:id="@+id/swipeDisableR"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_disable"
+            android:textSize="24sp"/>
+
+        </RadioGroup>
+
+      <TextView
+        android:id="@+id/tvSwipeLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="8sp"
+        android:text="@string/swipe_left"
+        android:textSize="24sp"/>
+
+        <RadioGroup
+          android:id="@+id/swipeGroupL"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:layout_marginStart="16sp"
+          android:orientation="horizontal">
+
+          <RadioButton
+            android:id="@+id/swipeDeleteL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_delete"
+            android:textSize="24sp"/>
+
+          <RadioButton
+            android:id="@+id/swipeCompleteL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_complete"
+            android:checked="true"
+            android:textSize="24sp"/>
+
+          <RadioButton
+            android:id="@+id/swipeDisableL"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/swipe_disable"
+            android:textSize="24sp"/>
+
+      </RadioGroup>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+  </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

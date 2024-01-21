@@ -3,7 +3,6 @@ package com.maru2525.taskapplication.ui.activity
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -11,12 +10,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -24,7 +20,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.maru2525.taskapplication.R
 import com.maru2525.taskapplication.databinding.ActivityMainBinding
-import com.maru2525.taskapplication.remind.CHANNEL_ID
+import com.maru2525.taskapplication.remind.CHANNEL_ID_NOTIFICATION
+import com.maru2525.taskapplication.remind.CHANNEL_ID_ALARM
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,8 +38,9 @@ class MainActivity : AppCompatActivity() {
     // 許可ダイアログを表示
     launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
 
-    // チャンネルの生成
+    // 通知チャンネルの生成
     createNotificationChannel()
+    createAlarmChannel()
 
     val navView: BottomNavigationView = binding.navView
 
@@ -88,10 +86,25 @@ class MainActivity : AppCompatActivity() {
   //  通知チャンネルの作成
   private fun createNotificationChannel() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      val name = "チャンネル名"
-      val descriptionText = "チャンネルの説明"
+      val name = "通知"
+      val descriptionText = "そのまま"
       val importance = NotificationManager.IMPORTANCE_HIGH
-      val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+      val channel = NotificationChannel(CHANNEL_ID_NOTIFICATION, name, importance).apply {
+        description = descriptionText
+      }
+      // チャンネルをシステムに登録
+      val notificationManager: NotificationManager =
+        getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+      notificationManager.createNotificationChannel(channel)
+    }
+  }
+
+  private fun createAlarmChannel(){
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+      val name = "アラーム"
+      val descriptionText = "そのまま"
+      val importance = NotificationManager.IMPORTANCE_HIGH
+      val channel = NotificationChannel(CHANNEL_ID_ALARM, name, importance).apply {
         description = descriptionText
       }
       // チャンネルをシステムに登録

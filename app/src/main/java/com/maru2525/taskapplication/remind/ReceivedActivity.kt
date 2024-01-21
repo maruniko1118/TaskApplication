@@ -5,31 +5,26 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.maru2525.taskapplication.R
 
-// 参考リンク
-// https://tech.amefure.com/android-alarmmanager
+const val CHANNEL_ID_NOTIFICATION = "タスクの時間" // 共通のチャンネルID
 
-
-const val CHANNEL_ID = "タスクの時間" // 共通のチャンネルID
 class ReceivedActivity : BroadcastReceiver() {
 
   private val NOTIFY_ID = 1
 
   @SuppressLint("MissingPermission")
   override fun onReceive(context: Context, intent: Intent) {
-    // ブロードキャストを受け取る
 
+    // ブロードキャストを受け取る
     val receivedData = intent.getStringExtra("message")
 
     val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent,  PendingIntent.FLAG_IMMUTABLE)
 
     // 通知オブジェクトの作成
-    var builder = NotificationCompat.Builder(context, CHANNEL_ID)
+    var builder = NotificationCompat.Builder(context, CHANNEL_ID_NOTIFICATION)
       .setSmallIcon(R.drawable.ic_top)
       .setContentTitle("タスクの時間")
       .setContentText(receivedData)
